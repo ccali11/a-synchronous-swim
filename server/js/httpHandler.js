@@ -18,6 +18,7 @@ module.exports.router = (req, res, next = ()=>{}) => {
   if (req.method === 'OPTIONS') {
     res.writeHead(200, headers);
     res.end();
+    next(); // invoke next() at the end of a request to help with testing!
   }
 
   if (req.method === 'GET') {
@@ -25,7 +26,6 @@ module.exports.router = (req, res, next = ()=>{}) => {
     var index = Math.floor(Math.random()*commands.length);
     res.writeHead(200, headers);
     res.end(commands[index]);
+    next(); // invoke next() at the end of a request to help with testing!
   }
-
-  next(); // invoke next() at the end of a request to help with testing!
 };
