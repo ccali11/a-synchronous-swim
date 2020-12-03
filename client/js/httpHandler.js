@@ -7,16 +7,15 @@
   //
 
   // Using AJAX, periodically request a random swim command from server
-  window.getSwimCommand = setInterval (
-    () => {
+  const getSwimCommand = () => {
       $.ajax({
         type: 'GET',
         url: serverUrl,
         success: (data) => { SwimTeam.move(data) }
       })
-    },
-    1500
-  )
+    }
+
+  setInterval(getSwimCommand, 500);
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
