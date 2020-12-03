@@ -11,11 +11,14 @@
       $.ajax({
         type: 'GET',
         url: serverUrl,
-        success: (data) => { SwimTeam.move(data) }
-      })
+        success: (data) => { SwimTeam.move(data) },
+        complete: () => {
+          // setTimeout(getSwimCommand, 10);
+        }
+      });
     }
 
-  setInterval(getSwimCommand, 500);
+    // setTimeout(getSwimCommand, 0);
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
