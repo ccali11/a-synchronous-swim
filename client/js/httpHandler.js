@@ -6,6 +6,18 @@
   // TODO: build the swim command fetcher here
   //
 
+  // Using AJAX, periodically request a random swim command from server
+  window.getSwimCommand = setInterval (
+    () => {
+      $.ajax({
+        type: 'GET',
+        url: serverUrl,
+        success: (data) => { SwimTeam.move(data) }
+      })
+    },
+    1500
+  )
+
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
   // Note: remember to fix the URL below.
@@ -17,7 +29,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl, // 'FILL_ME_IN',
       cache: false,
       contentType: false,
       processData: false,
@@ -45,5 +57,4 @@
 
     ajaxFileUplaod(file);
   });
-
 })();
