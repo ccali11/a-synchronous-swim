@@ -25,7 +25,7 @@ module.exports.router = (req, res, next = ()=>{}) => {
     const commands = ['up', 'down', 'left', 'right'];
     var index = Math.floor(Math.random()*commands.length);
     res.writeHead(200, headers);
-    res.end(commands[index]);
+    res.end(messageQueue.dequeue());
     next(); // invoke next() at the end of a request to help with testing!
   }
 };

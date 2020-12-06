@@ -3,6 +3,7 @@ $('body').on('keydown', (event) => {
   if (arrowPress) {
     var direction = arrowPress[1];
     SwimTeam.move(direction.toLowerCase());
+    // Probably put ajax request here
   }
 });
 console.log('Client is running in the browser!');

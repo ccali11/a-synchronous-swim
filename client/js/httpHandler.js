@@ -2,10 +2,6 @@
 
   const serverUrl = 'http://127.0.0.1:3000';
 
-  //
-  // TODO: build the swim command fetcher here
-  //
-
   // Using AJAX, periodically request a random swim command from server
   const getSwimCommand = () => {
       $.ajax({
@@ -13,12 +9,12 @@
         url: serverUrl,
         success: (data) => { SwimTeam.move(data) },
         complete: () => {
-          // setTimeout(getSwimCommand, 10);
+          setTimeout(getSwimCommand, 100);
         }
       });
     }
 
-    // setTimeout(getSwimCommand, 0);
+    setTimeout(getSwimCommand, 0);
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
