@@ -22,10 +22,18 @@ module.exports.router = (req, res, next = ()=>{}) => {
   }
 
   if (req.method === 'GET') {
-    const commands = ['up', 'down', 'left', 'right'];
-    var index = Math.floor(Math.random()*commands.length);
-    res.writeHead(200, headers);
-    res.end(messageQueue.dequeue());
-    next(); // invoke next() at the end of a request to help with testing!
+    if (req.url === '/') {
+      res.writeHead(200, headers);
+      res.end(messageQueue.dequeue());
+    } else if (req.url === '/background.jpg') {
+      res.writeHead(404, headers);
+      res.end();
+    }
+    next();
+
+  }
+
+  if (req.method === 'POST') {
+
   }
 };
