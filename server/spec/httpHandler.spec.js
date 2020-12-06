@@ -23,6 +23,12 @@ describe('server responses', () => {
   it('should respond to a GET request for a swim command', (done) => {
     let {req, res} = server.mock('/', 'GET'); // write your test here
     const commands = ['up', 'down', 'left', 'right'];
+    let index = Math.floor(Math.random() * commands.length);
+
+    const queue = require('../js/messageQueue');
+    httpHandler.initialize(queue);
+    queue.enqueue('up');
+
     httpHandler.router(req, res);
     expect(res._responseCode).to.equal(200);
     expect(res._ended).to.equal(true);
