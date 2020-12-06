@@ -39,7 +39,21 @@ module.exports.router = (req, res, next = ()=>{}) => {
     }
   }
 
-  // if (req.method === 'POST') {
+  if (req.method === 'POST') {
+    if (req.url === '/background.jpg') {
+      var fileData = Buffer.alloc(0);
 
-  // }
+      req.on('data', (chunk) => {
+        fileData = Buffer.concat([fileData, chunk]);
+      });
+
+      req.on('end', () => {
+        fs.writeFile(module.exports.backgroundImageFile, fileData, (err) => {
+          res.writeHead(err ? 400 : 201, headers);
+          res.end();
+          next();
+        });
+      });
+    }
+  }
 };
