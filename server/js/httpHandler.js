@@ -26,14 +26,20 @@ module.exports.router = (req, res, next = ()=>{}) => {
       res.writeHead(200, headers);
       res.end(messageQueue.dequeue());
     } else if (req.url === '/background.jpg') {
-      res.writeHead(404, headers);
-      res.end();
+      fs.readFile(module.exports.backgroundImageFile, (err, data) => {
+        if (err) {
+          res.writeHead(404, headers);
+        } else {
+          res.writeHead(200, headers);
+          res.write(data, 'binary');
+        }
+        res.end();
+        next();
+      });
     }
-    next();
-
   }
 
-  if (req.method === 'POST') {
+  // if (req.method === 'POST') {
 
-  }
+  // }
 };
