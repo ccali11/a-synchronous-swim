@@ -27,7 +27,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: serverUrl, // 'FILL_ME_IN',
+      url: serverUrl + '/background.jpg', // 'FILL_ME_IN',
       cache: false,
       contentType: false,
       processData: false,
